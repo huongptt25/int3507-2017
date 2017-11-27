@@ -46,6 +46,7 @@ Nội dung
 <li>d.      Đếm(Counting)</li>
 <li>e.      Chứng minh phân phối thuộc tính( Proving the Distributive Property)</li>
 <li>f.       Cảm ứng( Induction)</li>
+<li>g.       Đường dẫn trong một biểu đồ định hướng( Paths In a Directed Graph)</li> 
   </ul>
 <li>13. Mô- đun( Modules)</li>
   <ul>
@@ -534,7 +535,7 @@ method BinarySearch(a: array<int>, value: int) returns (index: int)
 Loại giá trị là những loại đai diện cho một số thông tin mà không phụ thuộc vào trạng thái của heap. Những giá trị này có thể nhận diện toán học. Không thể sửa đổi được loại giá trị khi chúng được tạo ra. Ví dụ như tuần tự (sequences) và tập hợp (sets). Bạn không thể thay đổi một tập hợp theo cách mà bạn sửa đổi chỉ mục trong một mảng. Thay vào đó để thêm một phần tử vào tập hợp, bạn sẽ xây dựng dựa trên việc kết hợp tập hợp gốc và tập hợp bao gồm phần tử mới. Dĩ nhiên là những phần tử cũ vẫn tồn tại. Việc không phụ thuộc vào heap làm cho các loại giá trị đặc biệt hữu ích trong đặc tả.
 Điều đó không có nghĩa là bạn không thể cập nhật những thứ tương ứng với các loại giá trị. Biến cái mà bao gồm loại giá trị có thể được cập nhật để có giá trị mới của loại đó. Tất cả các loại giá trị có thể được lưu trữ trong các trường trên heap và được sử dụng trong mã thực cùng với các đặc tả. Các loại giá trị được xây dựng trong Dafny là sets, sequences, multisets, maps.
 
-1. Tập hợp (Sets)
+a. Tập hợp (Sets)
 
 Tập hợp của các loại khác nhau tạo thành một trong những công cụ để kiểm thử cho Dafny. Tập hợp đại diện cho một bộ sưu tập không có thứ tự của các phần tử, mà không lặp lại.
 Tập hợp có thể có bất kì loại nào, bao gồm cả đối tượng (object).
@@ -575,7 +576,7 @@ Set x: T | p(x) :: f(x)
 Ví dụ:
 assert (set x | x in {0, 1, 2} :: x * 2) == {0, 2, 4};
 
-1. Chuỗi (Sequence)
+b. Chuỗi (Sequence)
 
 Chuỗi là một kiểu được xây dựng trong Dafny, đại diện cho một danh sách có thứ tự. Chúng có thể được sử dụng để đại diện cho nhiều bộ sưu tập có thứ tự bao gồm danh sách, hàng đợi, ngăn xếp, v.v. Chúng tương tự các chuỗi (string) trong các ngôn ngữ Java và Python, ngoài ra chúng có thể là các chuỗi của các kiểu tùy ý chứ không chỉ là các chuỗi của các ký tự. Các loại chuỗi được viết: seq<int> cho một chuỗi số nguyên (Lưu ý một lỗi đã phát hiện trong Dafny ngăn cản bạn tạo các chuỗi của naturals, nat. ).
 Ví dụ, hàm này lấy một dãy như một tham số:
@@ -637,7 +638,7 @@ Tương tự như:
 elem !in a[..i]
  
 
-1. Các tập hợp(Mutisets)
+c. Các tập hợp(Mutisets)
 
 Giống như các bộ trong hầu hết mọi cách, ngoại trừ các bộ giữ dấu vết có bao nhiêu bản sao của mỗi phần tử chúng có. Điều này làm cho chúng đặc biệt hữu ích để lưu trữ tập hợp các phần tử trong mảng, ví dụ, khi số lượng các bản sao của mỗi thành phần là như nhau. Thể loại multiset hầu như giống với các bộ:
 multiset<int>
@@ -655,7 +656,7 @@ assert multiset([1,1]) == multiset{1,1};
 assert multiset({1,1}) == multiset{1};
 Cả hai khẳng định đều chính xác vì multiset của một chuỗi xem xét từng phần tử riêng biệt, trong khi bộ chỉ có tối đa một trong mỗi phần tử. Dafny cho phép bạn viết {1,1} nó giống với {1} bởi vì những số trùng bị bỏ qua. Vì vậy khi thực hiện một multiset từ bộ, một phần tử trong multiset sẽ có hai lần chính xác một. Làm multiset từ các dãy đặc biệt hữu ích, như khi kết hợp với slice của một mảng, cho phép bạn nói về các tập hợp các phần tử trong một mảng (như trong multiset(a[..]), rất hữu ích trong việc xác minh phân loại các thuật toán và một số cấu trúc dữ liệu.
 
-1. Bản đồ( Map)
+d. Bản đồ( Map)
 
 Bản đồ (maps) trong Dafny đại diện cho mảng liên kết. Không giống như những loại trước, chúng có hai loại: khóa (key) và giá trị (value). Các giá trị có thể được lấy ra, tìm kiếm dựa trên key. Một bản đồ có cấu trúc:
 map<U,V>  với U là khóa, V là giá trị
@@ -674,13 +675,13 @@ Là một bản đồ có số 0-9 đến đôi của họ. Đây cũng là các
 map i | i in m && i != 3 :: m[i]
 **12. Bổ đề( Lemmas)**
 
-1. Giới thiệu( Introduction)
+a. Giới thiệu( Introduction)
 
 Đôi khi có những bước logic yêu cầu chứng minh một chương trình là đúng, nhưng chúng quá phức tạp đối với Dafny để khám phá và sử dụng. Khi điều này xảy ra, chúng ta có thể hỗ trợ cho Dafny bằng cách cung cấp một bổ đề (lemma).
 Bổ đề là một định lí được sử dụng để chứng minh một kết quả khác chứ không phải mục tiêu của nó. Chúng cho phép Dafny tách bằng chứng thành 2 phần: chứng minh bổ đề, sau đó sử dụng nó để chứng minh kết quả cuối cùng, kết quả cuối cùng là sự chính xác của chương trình. Dafny và máy tính nói chung, rất phù hợp cho sự phân chia những tài liệu chi tiết và bao phủ tất cả các ca kiểm thử. Nhưng nó lại thiếu thông minh để xem các bước trung gian, cái làm cho việc chứng minh trở nên dễ dàng hơn.
 Bằng việc viết và sử dụng bổ đề, bạn có thể chỉ ra những bước thực hiện là gì và khi nào sử dụng chúng trong chương trình. Đặc biệt quan trọng là đối số quy nạp, nó là vấn đề khó nhất đối với những người chứng minh định lí.
 
-1. Tìm kiếm số 0( Searching for zero)
+b. Tìm kiếm số 0( Searching for zero)
 
 Khi nhìn bổ đề đầu tiên của chúng ta, chúng ta sẽ xem xét một ví dụ : tìm kiếm số không trong một mảng.
  Điều làm cho vấn đề này trở nên thú vị là mảng mà chúng ta đang tìm kiếm có hai thuộc tính đặc biệt: tất cả các phần tử là không âm, và mỗi phần tử liên tiếp giảm ít nhất một đơn vị từ phần tử trước đó. Trong mã:
@@ -699,7 +700,7 @@ index := 0;
    index := -1;
 Mã này sẽ tính toán đúng kết quả, nhưng Dafny phàn nàn về sự bất biến của vòng lặp thứ hai. Dafny không tin rằng bỏ qua những thành phần này là hợp lí. Lí do vì điều kiện tiên quyết nói rằng mỗi phần tử sau giảm ít nhất một, nhưng nó không nói gì về mối quan hệ của các phần tử đứng xa nhau. Để thuyết phục Dafny về thực tế này, ta cần sử dụng một bổ đề (lemma).
 
-1. Bổ đề( Lemmas)
+c. Bổ đề( Lemmas)
 
 Một bổ đề thực sự chỉ là một phương thức ma. Thuộc tính mong muốn nêu bởi bổ đề (chính xác hơn, là kết luận của bổ đề) được tuyên bố như là điều kiện, cũng giống như cách bạn làm cho một phương thức thông thường. Không giống như một phương thức, một bổ đề không bao giờ được phép thay đổi trạng thái. Vì một bổ đề là ảo, nó không cần phải được gọi tại thời gian chạy, do đó, trình biên dịch xóa nó trước khi xuất mã thực thi. Vì vậy, bổ đề là đại diện duy nhất cho hiệu quả của nó trên kiểm tra chương trình. Bạn có thể nghĩ rằng bổ đề như khẳng định chắc chắn, trong đó họ đang chỉ cần thiết để giúp chứng minh của chương trình sau cùng. Bổ đề điển hình có thể như:
 lemma Lemma(…)
@@ -748,7 +749,7 @@ Biến đầu tiên cho ràng buộc trên các yếu tố hiện tại, nếu c
 Thật vậy! Vòng lặp chỉ ra số truy cập. Như chúng ta đã thấy trước khi Dafny là có thể tìm ra mỗi bước của riêng mình, vì vậy chúng tôi không cần phải làm bất cứ điều gì hơn nữa. Chúng tôi chỉ cần thiết để cung cấp cho nó cấu trúc của các bằng chứng mà nó cần thiết để thực hiện. Đôi khi các bước cá nhân là phức tạp, đủ rằng chúng cần một chút riêng của chúng subproofs, sử dụng hoặc là một loạt các câu khẳng định hoặc một bổ đề khác.
 Khi làm việc với mảng, lặp đi lặp lại là một giải pháp tự nhiên cho nhiều vấn đề. Không có một số lần, Tuy nhiên, khi đệ quy được sử dụng để xác định các chức năng hoặc thuộc tính. Trong những trường hợp này, các bổ đề thường có cùng cấu trúc đệ quy. Để xem một ví dụ này, chúng tôi sẽ xem xét các vấn đề của đếm.
 
-1. Đếm(Counting)
+d. Đếm(Counting)
 
 Chúng ta sẽ đếm số trues trong một chuỗi bools, bằng cách sử dụng các chức năng count (đếm), được đưa ra dưới đây:
 function count (a: seq<bool> ): nat
@@ -778,7 +779,7 @@ ensures count(a+b) == count(a) + count(b)
 {
 }
 
-1. Chứng minh phân phối thuộc tính( Proving the Distributive Property)
+e. Chứng minh phân phối thuộc tính( Proving the Distributive Property)
 
 Để viết bổ đề, chúng ta phải tìm ra một chiến lược để chứng minh nó. Như bạn có thể xác minh ở trên (không có ý định chơi chữ), bổ đề không hoạt động được nêu ra, thì bổ đề sẽ là không cần thiết. Để làm điều này, chúng tôi lưu ý rằng lý do Dafny không phải có thể chứng minh điều này ở nơi đầu tiên mà các chức năng đếm được xác định từ khi bắt đầu của chuỗi, trong khi các thuộc tính phân phối hoạt động vào giữa của một chuỗi. Do đó nếu chúng ta có thể tìm thấy một cách để làm việc từ phía trước trong tiến trình, sau đó Dafny có thể theo dõi bằng cách sử dụng định nghĩa của các chức năng trực tiếp.
 Các yếu tố đầu tiên của dãy là gì?
@@ -805,7 +806,7 @@ assert count(a+b) == count(a) + count(b);//postcondition
 assert count(a+b) == count([a[0]]) + count(a[1..]) + count(b);
 Bây giờ điều này trông rất giống với những biểu hiện mà chúng tôi đã nhận sau khi mở rộng count(a + b). Khác biệt duy nhất là count(a[1..] + b) đã trở thành count(a[1..]) + count(b). Nhưng điều này là chính xác nơi chúng tôi đang cố gắng để chứng minh!
 
-1. Cảm ứng( Induction)
+f. Cảm ứng( Induction)
 
 Các đối số, chúng tôi đang cố gắng để làm cho là quy nạp. Chúng ta có thể chứng minh mục đích của chúng tôi cho rằng một phiên bản nhỏ hơn của vấn đề là sự thật. Điều này là chính xác các khái niệm của cảm ứng: sử dụng một phiên bản nhỏ hơn của một vấn đề để chứng minh một một lớn hơn. Để làm điều này, chúng ta gọi là sở hữu đệ quy từ trong mã của chúng tôi. Nó là một phương pháp, do đó, nó có thể được kích hoạt bất cứ khi nào chúng ta cần nó.
 Dafny sẽ giả định rằng các cuộc gọi đệ quy đáp ứng đặc điểm kỹ thuật. Đây là giả thiết quy nạp, tất cả các cuộc gọi đệ quy của bổ đề có giá trị. Điều này phụ thuộc chủ yếu vào một thực tế rằng Dafny cũng chứng minh việc chấm dứt. Điều này có nghĩa rằng cuối cùng, bổ đề sẽ không làm cho một đệ quy gọi. Trong trường hợp này, đây là chi nhánh đầu tiên của nếu tuyên bố. Nếu không có không có cuộc gọi đệ quy, sau đó bổ đề phải được chứng minh trực tiếp cho các trường hợp đó. Sau đó mỗi cuộc gọi trong ngăn xếp là hợp lý trong giả định bổ đề hoạt động cho các trường hợp nhỏ hơn. Nếu Dafny không chứng minh dãy chấm dứt, sau đó chuỗi có thể tiếp tục mãi mãi, và giả định cho mỗi cuộc gọi sẽ không được chứng minh.
@@ -823,7 +824,7 @@ assert a+b == [a[0]] + (a[1..] +b);
 }
 Bây giờ bổ đề xác nhận. Nhưng những gì nếu chúng tôi muốn nhận mỗi cặp trình tự có liên quan theo cách này? Chúng tôi phải xem xét sử dụng một bổ đề trong Dafny để có thể làm điều này, chúng tôi sẽ khám phá với một ví dụ khác.
 
-1. Đường dẫn trong một biểu đồ định hướng
+g. Đường dẫn trong một biểu đồ định hướng
 
 Phần cuối cùng, nâng cao hơn, ví dụ hơn, chúng ta sẽ chứng minh thuộc tính về các đường dẫn trong một đồ thị. Về điều này, chúng ta sẽ có dịp để gọi một bổ đề phổ biến trên tất cả các chuỗi của các nút. Một đồ thị chuẩn bao gồm một số Nút (Nodes) với một số liên kết tới các nút khác. Những liên kết này có hướng duy nhất, và những hạn chế duy nhất của chúng là một nút không thể liên kết với chính nó. Các nút được định nghĩa là:
 Class Node
